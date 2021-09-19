@@ -1,7 +1,10 @@
 import numpy as np
-from sympy import *
+from numpy.lib.type_check import real
+import sympy as sp
+import math
 
-x1, x2, x3 = symbols("x1 x2 x3")
+x1, x2, x3 = sp.symbols("x1 x2 x3", positive=True, real=True)
+nx1 = sp.symbols("nx1")
 u = np.array([x1, x2, x3])
 # Thong so hinh hoc robot
 a1 = 40
@@ -25,3 +28,13 @@ EE = np.array([[1, 0, 0, 0], [u[0], d[2], 0, 0], [
 
 C = np.array([[1, 0, 0, 0], [EE[1][0]-EE[1][3]*c4, EE[1][1],
              0, 0], [EE[2][0]-EE[2][3]*c4, 0, 1, 0], [EE[3][0]-EE[3][3]*c4, 0, 0, EE[3][3]]])
+cx0 = C[1][0]
+cy0 = C[2][0]
+cz0 = C[3][0]
+print(cx0, cy0, cz0)
+nx1 = sp.sqrt(cx0**2+cy0**2-b1**2)-a1
+s12 = nx1**2+(cz0-c1)**2
+s22 = (nx1+2*a1)*2+(cz0-c1)*2
+k = sp.sqrt(a2**2+c3**2)
+theta = np.ones((3, 4))*1j
+print(theta)
