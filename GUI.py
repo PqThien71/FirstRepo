@@ -10,7 +10,7 @@ import time
 window = tk.Tk()
 window.title("Send data to board")
 window.geometry('200x150')
-arduino = serial.Serial(port='COM4', baudrate=115200, timeout=.1)
+arduino = serial.Serial(port='COM3', baudrate=9600, timeout=.1)
 
 
 def write_read(x):
@@ -21,10 +21,11 @@ def write_read(x):
 
 
 def sendDataToArduino():
-    while True:
-        num = textBoxVal.get()
-        value = write_read(num)
-        print(value)
+    num = textBoxVal.get()
+    print(type(num))
+    print(num)
+    value = write_read(num)
+    print(value)
 
 
 sendButton = tk.Button(window, text="Send", command=sendDataToArduino)

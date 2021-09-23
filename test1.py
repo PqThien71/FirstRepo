@@ -1,9 +1,18 @@
-import numpy as np
-a = np.array([[1, 2], [3, 4]])
-b = np.array([[4, 5], [6, 7]])
-c = np.array([[1], [2], [3], [4]])
-print(c)
-c = a*b
-d = np.dot(a, b)
-print(c)
-print(d)
+import serial
+import time
+
+arduino = serial.Serial(port='COM3', baudrate=115200, timeout=.1)
+
+
+def write_read(x):
+    arduino.write(bytes(x, 'utf-8'))
+    time.sleep(0.05)
+    data = arduino.readline()
+    return data
+
+
+while True:
+    num = input("Enter a number: ")
+    print(type(num))
+    value = write_read(num)
+    print(value)
