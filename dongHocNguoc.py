@@ -6,7 +6,7 @@ import cmath
 
 x1, x2, x3 = sp.symbols("x1 x2 x3", positive=True, real=True)
 nx1 = sp.symbols("nx1")
-u = np.array([50, 50, 0])
+u = np.array([100, 100, 0])
 # Thong so hinh hoc robot
 a1 = 40
 a2 = 22
@@ -65,6 +65,7 @@ if isreal(nx1):
     theta[2][3] = - cmath.acos((s22-c2**2-k**2)/(2*c2*k))-math.atan2(a2, c3)
 
 theta123 = theta
+print(theta123)
 
 lst = []
 c23_list = []
@@ -73,6 +74,7 @@ for i in range(0, 4):
         lst.append(i)
 
 ind = np.array(lst)
+print(ind)
 for i in range(0, ind.shape[0]):
     c23_temp = cmath.cos(theta123[1][ind[i]]+theta123[2][ind[i]])
     c23_list.append(c23_temp)
